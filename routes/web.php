@@ -46,9 +46,9 @@ Route::get('/apartments', function () {
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', \App\Livewire\Admin\DashboardStats::class)->name('dashboard')->middleware(AdminMiddleware::class);
     Route::get('/apartments', \App\Livewire\Admin\ApartmentGrid::class)->name('apartments')->middleware(AdminMiddleware::class);
-    // Route::get('/guests', \App\Livewire\Admin\GuestList::class)->name('guests')->middleware(AdminMiddleware::class);
-    // Route::get('/checkin', \App\Livewire\Admin\CheckIn::class)->name('checkin')->middleware(AdminMiddleware::class);
-    // Route::get('/checkout', \App\Livewire\Admin\CheckOut::class)->name('checkout')->middleware(AdminMiddleware::class);
+    Route::get('/guests', \App\Livewire\Admin\GuestList::class)->name('guests')->middleware(AdminMiddleware::class);
+    Route::get('/checkin', \App\Livewire\Admin\CheckIn::class)->name('checkin')->middleware(AdminMiddleware::class);
+    Route::get('/checkout', \App\Livewire\Admin\CheckOut::class)->name('checkout')->middleware(AdminMiddleware::class);
 });
 
 // Protected Guest Routes
