@@ -55,3 +55,9 @@ Route::middleware(['auth'])->prefix('guest')->name('guest.')->group(function () 
 
 // Apartment Details (Public)
 Route::get('/apartments/{apartment}', \App\Livewire\Guest\ApartmentShow::class)->name('guest.apartments.show');
+
+// Temporary route to setup database
+Route::get('/setup-db', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
+    return 'Database migrated and seeded successfully! <a href="/apartments">Go to Catalog</a>';
+});
