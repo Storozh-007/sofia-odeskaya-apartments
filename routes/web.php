@@ -58,6 +58,21 @@ Route::get('/apartments/{apartment}', \App\Livewire\Guest\ApartmentShow::class)-
 
 // Temporary route to setup database
 Route::get('/setup-db', function () {
-    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
-    return 'Database migrated and seeded successfully! <a href="/apartments">Go to Catalog</a>';
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
+        return 'Database migrated and seeded successfully! <a href="/apartments">Go to Catalog</a><br><pre>' . \Illuminate\Support\Facades\Artisan::output() . '</pre>';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage() . '<br><pre>' . $e->getTraceAsString() . '</pre>';
+    }
+});
+
+// Temporary route to view logs
+Route::get('/debug-logs', function () {
+    $logPath = storage_path('logs/laravel.log');
+    if (!file_exists($logPath)) return "No logs found.";
+    
+    // Read last 50 lines of log
+    $lines = file($logPath);
+    $lastLines = array_slice($lines, -50);
+    return '<pre>' . implode("", $lastLines) . '</pre>';
 });
