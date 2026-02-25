@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop" alt="Банер Sofia-Odeskaya" width="100%" style="border-radius: 12px; margin-bottom: 2rem;">
   
-  <h1>🌟 Sofia-Odeskaya Apartments</h1>
+  <h1> Sofia-Odeskaya Apartments</h1>
   <p><strong>Преміальна система управління бронюванням апартаментів та бутик-готелів</strong></p>
 
   <p>
