@@ -91,7 +91,6 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->call(ReviewSeeder::class);
-        $this->call(TargetedReviewSeeder::class);
         $this->call(ApartmentImageSeeder::class);
     }
 }
