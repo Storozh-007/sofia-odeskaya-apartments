@@ -16,7 +16,7 @@ test('guest can create a booking', function () {
     $startDate = '2024-06-01';
     $endDate = '2024-06-03'; // 2 days
     
-    $booking = $action->execute($user, $apartment, $startDate, $endDate);
+    $booking = $action->execute($user, $apartment, $startDate, $endDate, '1234567890');
     
     expect($booking)
         ->user_id->toBe($user->id)

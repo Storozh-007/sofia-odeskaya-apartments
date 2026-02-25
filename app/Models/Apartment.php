@@ -17,6 +17,7 @@ class Apartment extends Model
         'price',
         'capacity',
         'status',
+        'room_class',
     ];
 
     protected function casts(): array

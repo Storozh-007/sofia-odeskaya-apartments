@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{{ $title ?? 'Sofia-Odeskaya Apartments' }}</title>
+        <title>{{ $title ?? 'soBooking' }}</title>
         
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,15 +20,18 @@
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex items-center justify-between h-16">
                         <div class="flex items-center">
-                            <a href="{{ route('guest.apartments') }}" class="text-xl font-bold tracking-wider text-[#D4AF37] hover:text-[#b39025] transition-colors">SOFIA-ODESKAYA</a>
+                            <a href="{{ route('guest.apartments') }}" class="text-xl font-bold tracking-wider text-[#D4AF37] hover:text-[#b39025] transition-colors">SOBOOKING</a>
                         </div>
                         <div class="flex items-center space-x-4">
                             @auth
                                 @if(auth()->user()->isAdmin())
                                     <a href="{{ route('admin.dashboard') }}" class="text-sm hover:text-[#D4AF37] transition-colors">Dashboard</a>
-                                    <a href="{{ route('admin.apartments') }}" class="text-sm hover:text-[#D4AF37] transition-colors">Manage Apartments</a>
+                                    <a href="{{ route('admin.apartments') }}" class="text-sm hover:text-[#D4AF37] transition-colors">Rooms</a>
+                                    <a href="{{ route('admin.guests') }}" class="text-sm hover:text-[#D4AF37] transition-colors">Guests</a>
+                                    <a href="{{ route('admin.checkin') }}" class="text-sm hover:text-[#D4AF37] transition-colors">Check-in</a>
+                                    <a href="{{ route('admin.checkout') }}" class="text-sm hover:text-[#D4AF37] transition-colors">Check-out</a>
                                 @endif
-                                <span class="text-sm opacity-80">Welcome, {{ auth()->user()->name }}</span>
+                                <span class="text-sm opacity-80 pl-4 border-l border-white/20">Welcome, {{ auth()->user()->name }}</span>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" class="text-sm hover:text-[#D4AF37] transition-colors">Logout</button>
@@ -50,7 +53,7 @@
             <!-- Footer -->
             <footer class="bg-[#0D1F3F] text-white py-6 mt-auto">
                 <div class="max-w-7xl mx-auto px-4 text-center">
-                    <p class="text-sm opacity-60">&copy; {{ date('Y') }} Sofia-Odeskaya Apartments. Premium Living.</p>
+                    <p class="text-sm opacity-60">&copy; {{ date('Y') }} soBooking. Premium Living.</p>
                 </div>
             </footer>
         </div>

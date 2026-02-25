@@ -18,6 +18,11 @@
                 <input type="number" wire:model.defer="form.capacity" class="w-full mt-2 rounded-xl border border-gray-200 dark:border-[#2a3c5e] px-3 py-2 bg-white dark:bg-[#0b1a36]" placeholder="2">
                 @error('form.capacity') <p class="text-xs text-rose-500 mt-1">{{ $message }}</p> @enderror
             </div>
+            <div class="col-span-1">
+                <label class="text-sm font-semibold text-gray-600 dark:text-gray-300">Room Class</label>
+                <input type="text" wire:model.defer="form.room_class" class="w-full mt-2 rounded-xl border border-gray-200 dark:border-[#2a3c5e] px-3 py-2 bg-white dark:bg-[#0b1a36]" placeholder="Standard, Lux...">
+                @error('form.room_class') <p class="text-xs text-rose-500 mt-1">{{ $message }}</p> @enderror
+            </div>
             <div class="col-span-1 md:col-span-2">
                 <label class="text-sm font-semibold text-gray-600 dark:text-gray-300">Description</label>
                 <textarea wire:model.defer="form.description" rows="2" class="w-full mt-2 rounded-xl border border-gray-200 dark:border-[#2a3c5e] px-3 py-2 bg-white dark:bg-[#0b1a36]" placeholder="Short description"></textarea>
@@ -69,6 +74,7 @@
                     </div>
                     <div class="absolute bottom-4 left-4 right-4">
                         <h3 class="text-xl font-bold text-white leading-tight drop-shadow-md">{{ $apartment->title }}</h3>
+                        <p class="text-sm text-gray-200 mt-1 drop-shadow-md">{{ $apartment->room_class ?: 'Standard' }} • {{ $apartment->capacity }} {{ Str::plural('Guest', $apartment->capacity) }}</p>
                     </div>
                 </div>
                 

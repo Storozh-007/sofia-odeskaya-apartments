@@ -16,6 +16,7 @@ class ApartmentGrid extends Component
         'price' => null,
         'capacity' => 2,
         'status' => 'free',
+        'room_class' => '',
         'extra_images' => '',
     ];
 
@@ -25,6 +26,7 @@ class ApartmentGrid extends Component
         'form.image_url' => 'nullable|url',
         'form.price' => 'required|numeric|min:1',
         'form.capacity' => 'required|integer|min:1|max:20',
+        'form.room_class' => 'nullable|string|max:50',
         'form.status' => 'required|in:free,taken,cleaning',
         'form.extra_images' => 'nullable|string',
     ];
@@ -39,6 +41,7 @@ class ApartmentGrid extends Component
             'image_url' => $this->form['image_url'] ?: null,
             'price' => (int) round($this->form['price'] * 100),
             'capacity' => $this->form['capacity'],
+            'room_class' => $this->form['room_class'],
             'status' => $this->form['status'],
         ]);
 
