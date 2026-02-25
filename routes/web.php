@@ -1,0 +1,57 @@
+<?php
+
+use App\Livewire\Admin\ApartmentGrid;
+use App\Livewire\Guest\BookingForm;
+use App\Models\Apartment;
+use Illuminate\Support\Facades\Route;
+
+
+
+Route::middleware([
+    'auth',
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        if (auth()->user()->isAdmin()) {
+            return redirect()->route('admin.dashboard');
+        }
+        return redirect()->route('guest.apartments');
+    })->name('dashboard');
+});
+
+use App\Http\Middleware\AdminMiddleware;
+use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Register;
+
+// Auth Routes
+Route::get('/login', Login::class)->name('login');
+Route::get('/register', Register::class)->name('register');
+Route::post('/logout', function () {
+    auth()->logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/');
+})->name('logout');
+
+// Public Routes
+Route::get('/', function () {
+    return redirect()->route('guest.apartments');
+});
+
+Route::get('/apartments', function () {
+    return view('guest.catalog', ['apartments' => Apartment::all()]);
+})->name('guest.apartments');
+
+// Admin Routes
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', \App\Livewire\Admin\DashboardStats::class)->name('dashboard')->middleware(AdminMiddleware::class);
+    Route::get('/apartments', \App\Livewire\Admin\ApartmentGrid::class)->name('apartments')->middleware(AdminMiddleware::class);
+});
+
+// Protected Guest Routes
+Route::middleware(['auth'])->prefix('guest')->name('guest.')->group(function () {
+    Route::get('/book/{apartment}', BookingForm::class)->name('book');
+});
+
+// Apartment Details (Public)
+Route::get('/apartments/{apartment}', \App\Livewire\Guest\ApartmentShow::class)->name('guest.apartments.show');
